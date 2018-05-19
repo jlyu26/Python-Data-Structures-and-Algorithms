@@ -17,13 +17,13 @@ Like above, we have a list of names where the index is referencing an object. So
 
 <img width="330" alt="referential-arrays-temp" src="https://user-images.githubusercontent.com/20265633/40262802-a77a4a6c-5ad8-11e8-9bf2-a5ed2e00aabc.PNG">
 
-## reassignment
+### reassignment
 
 Like in this case when the elements of the list are immutable objects and integers are immutable, the fact that two lists share elements isn't really significant as neither of them can cause a change to the shared object. So if we do the reassignment, like `temp[2] = 15`, what we're actually doing is just **changing the existing reference**, instead of changing the integer object.
 
 <img width="338" alt="referential-arrays-reference" src="https://user-images.githubusercontent.com/20265633/40262880-6c3eef2e-5ad9-11e8-9996-4d05d7d0f41f.PNG">
 
-## extend
+### extend
 
 - `primes.extend(extras)`
 
@@ -31,7 +31,7 @@ Like in this case when the elements of the list are immutable objects and intege
 
 The extend command is used to add all elements from one list to the end of another. The extended list does not receive copies of those elements. Instead it receives the **added references** to those elements.
 
-## Copying Arrays
+### Copying Arrays
 
 - `backup = list(primes)`
 - This produces a new list that is a **shallow copy**, which **references** the same elements as in the first list.
