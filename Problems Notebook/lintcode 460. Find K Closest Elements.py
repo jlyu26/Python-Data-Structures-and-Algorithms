@@ -24,7 +24,7 @@ class Solution:
 		if k == 0:
 			return []
 
-		# find target/hearest number's index in A
+		# find target/nearest number's index in A
 		idx = 0
 		def findIndex(A, target, k):
 
