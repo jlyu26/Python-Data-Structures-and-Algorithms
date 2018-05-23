@@ -25,32 +25,26 @@ class Solution:
 	"""
 	def searchBigSortedArray(self, reader, target):
 		
-		limit = 2147483647
-		
-		if reader.get(0) > target:
+		# 用倍增法(Exponential Backoff)找到数组边界
+		index = 0
+		while reader.get(index) < target:
+			index = index * 2 + 1
+
+		# 用二分法查找
+		start = 0
+		end = index
+		while start + 1 < end:
+			mid = start + (end - start) // 2
+			if reader.get(mid) < target:
+				start = mid
+			elif reader.get(mid) > target:
+				end = mid
+			elif reader.get(mid) == target:
+				end = mid
+
+		if reader.get(start) == target:
+			return start
+		elif reader.get(end) == target:
+			return end
+		else:
 			return -1
-		if reader.get(0) == target:
-			return 0
-		if reader.get(1) == target:
-			return 1
-
-		idx = 2
-		step = 1		
-		while step >= 1:
-			if reader.get(idx) == limit or reader.get(idx + 1) == limit:
-				break
-			elif reader.get(idx) < target:
-				step = int(step * 2)
-				idx = idx + step
-			elif reader.get(idx) >= target:
-				step = int(step / 2)
-				idx = idx - step
-
-		if reader.get(idx) == target:
-			return idx
-		elif reader.get(idx + 1) == target:
-			return idx + 1
-		elif reader.get(idx - 1) == target:
-			return idx - 1
-		
-		return -1
