@@ -12,7 +12,7 @@
 # Minimize the total number of operations.
 
 # 思路： two pointers
-# 一个指向最前面的0，一个查找后面的非0
+# 一个指向最前面过滤了0的，一个查找后面的非0往前挪
 
 class Solution:
 	def moveZeroes(self, nums):
@@ -23,21 +23,19 @@ class Solution:
 		if nums is None:
 			return []
 		
-		zero = 0
-		search = 0
-		while zero < len(nums):
-			if nums[zero] != 0:
-				zero += 1
-			else:	# 在后面找到一个非0与之交换
-				search = zero + 1
-				while search < len(nums):
-					if nums[search] == 0:
-						search += 1
-					else:
-						nums[zero] = nums[search]
-						nums[search] = 0
-						break
-				zero += 1
+		left = 0
+		right = 0
+		while right < len(nums):
+			if nums[right] == 0:
+				right += 1
+			else:
+				nums[left] = nums[right]
+				left += 1
+				right += 1
 
-		# return nums
+		# 补全后面的0
+		idx = left
+		while left < len(nums):
+			nums[left] = 0
+			left += 1
 		
