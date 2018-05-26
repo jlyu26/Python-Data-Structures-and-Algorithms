@@ -20,21 +20,21 @@
 ###########################################################################################################
 
 class Solution:
-    def longestPalindrome(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
+	def longestPalindrome(self, s):
+		"""
+		:type s: str
+		:rtype: int
+		"""
 
-        odd = {}
+		odd = {}
 
-        for c in s:
-        	if c in odd:
-        		del odd[c]
-        	else:
-        		odd[c] = True
-        
-        if len(odd) > 0:
-            return len(s) - (len(odd) - 1)
+		for c in s:
+			if c in odd:
+				del odd[c]
+			else:
+				odd[c] = True
+		
+		if len(odd) > 0:
+			return len(s) - (len(odd) - 1)
 
-        return len(s)
+		return len(s)
