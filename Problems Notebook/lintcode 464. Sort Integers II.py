@@ -6,8 +6,10 @@
 # Example
 # Given [3, 2, 1, 4, 5], return [1, 2, 3, 4, 5].
 
-# 用quick sort（双指针partition类）
-# 重点在于怎么recursion
+# 用quick sort (双指针partition类)
+# 先选一个数为pivot, <=放左边, >=放右边
+# 注意=的要尽量左右均分,否则容易出现最坏情况
+# 怎么recursion ??
 
 class Solution:
 	"""
