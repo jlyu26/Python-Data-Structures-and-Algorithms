@@ -17,6 +17,10 @@
 # 如果发现某个点的入度被减去 1 之后变成了 0, 则放入队列中;
 # 直到队列为空时, 算法结束
 
+# 注意Python的queue模块是block queue, 如果empty时去pop会造成线程阻塞
+# 所以写bfs应该用list (OJ用list比queue.Queue快很多)
+# 但list的pop操作效率较低, 工程中用collections.deque效率最好
+
 # e.g. test data:
 # {0,1,2,3,4#1,3,4#2,1,4#3,4#4}
 
@@ -42,22 +46,19 @@ class Solution:
 				indegree[j] += 1
 
 		# define queue and initalize with 0 indegree nodes
-		# 注意Python的queue模块是block queue, 如果empty时去pop会造成线程阻塞
-		# 所以写bfs应该用list
-		import queue
-		q = queue.Queue()
+		q = []
 		for i in graph:
 			if indegree[i] == 0:
-				q.put(i)
+				q.append(i)
 
 		# result and bfs
 		result = []
-		while not q.empty():
-			node = q.get()
+		while q:
+			node = q.pop(0)
 			result.append(node)
 			for j in node.neighbors:
 				indegree[j] -= 1
 				if indegree[j] == 0:
-					q.put(j)
+					q.append(j)
 
 		return result
