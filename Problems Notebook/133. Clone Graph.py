@@ -28,6 +28,12 @@
 #         self.label = x
 #         self.neighbors = []
 
+# 用3个步骤：
+
+# 1. 从1个点找到所有点
+# 2. 复制所有的点
+# 3. 复制所有的边
+
 class Solution:
 	# @param node, a undirected graph node
 	# @return a undirected graph node
@@ -53,6 +59,7 @@ class Solution:
 			return node
 
 		# copy nodes, store the old->new mapping information in a hash map
+		# 因为如果只有label的话, 在第三部复制边的时候并不知道该把哪两个node连接起来
 		nodes = self.getNodes(node)
 
 		mapping = {}
