@@ -42,7 +42,7 @@ class Solution:
 				return True
 
 		# 广度优先搜索所有(x,y)相邻的点
-		# 直到左右跟(x,y)在同一个岛上的点都被标记为 visit = True
+		# 直到所有跟(x,y)在同一个岛上的点都被标记为 visit = True
 		def bfs(x, y):
 			# nearby row, col的组合分别对应上下左右相邻的点
 			nbrow = [1, 0, -1, 0]
