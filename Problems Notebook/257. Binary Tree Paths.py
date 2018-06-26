@@ -49,3 +49,25 @@ class Solution:
 			paths.append(str(root.val))
 
 		return paths
+
+	# Traverse
+	def binaryTreePaths(self, root):
+		result = []
+		if not root:
+			return result
+
+		self.traverse(root, str(root.val), result)
+		return result
+
+	def traverse(self, root, path, result):
+		if not root:
+			return
+
+		if root.left is None and root.right is None:
+			result.append(path)
+			return
+
+		if root.left:
+			self.traverse(root.left, path + '->' + str(root.left.val), result)
+		if root.right:
+			self.traverse(root.right, path + '->' + str(root.right.val), result)
