@@ -40,7 +40,7 @@
 # 而inorder是否升序只需要判断当前node是否比其上一个node大, 不必记录遍历过得所有node
 
 # Divide and Conquer: root.val比左子树的max大, 比右子树的min小
-# recursion既返回max又返回min, 需要用到class定义ResultType
+# recursion既返回max又返回min
 
 # Traverse:
 class Solution:
