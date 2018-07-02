@@ -20,8 +20,10 @@
 #   []
 # ]
 
+# Follow up: 如果nums中有重复元素? (90. Subset II)
+
 # 思路: 基于组合的DFS
-# 1. 最简单的递归方式, 选or不选 (适用的情况比较少)
+# 1. 最简单的递归方式, 选or不选 (适用的情况比较少, 组合类搜索专用)
 class Solution:
 	def subsets(self, nums):
 		"""
@@ -66,6 +68,7 @@ class Solution:
 		return self.results
 
 	# 1. 递归的定义：在nums中找到所有以subset开头的的集合, 并放到results
+	# idx: 可以从nums[idx]开始选数加到subset里, 去寻找以subset开头的所有子集
 	def dfs(self, nums, idx, subset):
 		# 2. 递归的拆解: deep copy
 		import copy
@@ -76,7 +79,7 @@ class Solution:
 			subset.append(nums[i])
 			# 寻找所有以[1, 2]开头的集合, 并扔到results
 			self.dfs(nums, i + 1, subset)
-			# [1, 2] -> [1] backtracking, i+=1后寻找[1, 3]开头的集合
+			# [1, 2] -> [1] backtracking, i += 1循环进入下一层后寻找[1, 3]开头的集合
 			subset.remove(nums[i])
 
 		# 3. 递归的出口
