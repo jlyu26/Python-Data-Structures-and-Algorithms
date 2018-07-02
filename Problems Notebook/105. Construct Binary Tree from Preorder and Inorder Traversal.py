@@ -31,3 +31,11 @@ class Solution:
 		:type inorder: List[int]
 		:rtype: TreeNode
 		"""
+		if not inorder:
+			return None
+
+		root = TreeNode(preorder[0])
+		rootPosition = inorder.index(preorder[0])
+		root.left = self.buildTree(preorder[1: 1 + rootPosition], inorder[: rootPosition])
+		root.right = self.buildTree(preorder[1 + rootPosition:], inorder[rootPosition + 1:])
+		return root

@@ -33,5 +33,12 @@ class Solution:
 		:type postorder: List[int]
 		:rtype: TreeNode
 		"""
+		if not inorder:
+			return None
 
+		root = TreeNode(postorder[-1])
+		rootPosition = inorder.index(postorder[-1])
+		root.left = self.buildTree(inorder[:rootPosition], postorder[:rootPosition])
+		root.right = self.buildTree(inorder[rootPosition + 1:], postorder[rootPosition: -1])
+		return root
 		
