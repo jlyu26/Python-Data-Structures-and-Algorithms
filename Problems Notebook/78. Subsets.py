@@ -70,7 +70,8 @@ class Solution:
 	# 1. 递归的定义：在nums中找到所有以subset开头的的集合, 并放到results
 	# idx: 可以从nums[idx]开始选数加到subset里, 去寻找以subset开头的所有子集
 	def dfs(self, nums, idx, subset):
-		# 2. 递归的拆解: deep copy
+		# 2. 递归的拆解: deep copy, 因为每次调用都append subset, subset每次都不一样
+		# 如果不deep copy而只是reference的话results会变成len(nums)个最后一个subset
 		import copy
 		self.results.append(copy.deepcopy(subset))
 		
