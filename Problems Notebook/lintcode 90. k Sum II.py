@@ -40,3 +40,33 @@ class Solution:
 		self.dfs(A, k, target, idx + 1, lst)
 		# 选
 		self.dfs(A, k-1, target - A[idx], idx + 1, lst + [A[idx]])
+
+
+
+# 2. 通用的递归方式, for loop回溯法
+class Solution:
+	def kSumII(self, A, k, target):
+		self.results = []
+		if not A or k == 0:
+			return self.results
+
+		A.sort()
+		self.dfs(A, k, target, 0, [])
+		return self.results
+
+	def dfs(self, A, k, target, idx, lst):
+		if target == 0 and k == 0:
+			import copy
+			self.results.append(copy.deepcopy(lst))
+			return
+
+		if k == 0:
+			return
+
+		for i in range(idx, len(A)):
+			if A[idx] > target:
+				break
+
+			lst.append(A[i])
+			self.dfs(A, k - 1, target - A[i], i + 1, lst)
+			lst.remove(A[i])
