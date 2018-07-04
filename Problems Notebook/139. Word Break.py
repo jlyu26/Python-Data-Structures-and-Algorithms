@@ -79,3 +79,10 @@ class Solution:
 
 
 # 思路3: BFS求能否抵达
+
+# 思路4: 纯DFS
+class Solution:
+	def wordBreak(self, s, wordDict):
+		self.stringlength = len(s)
+		if len(wordDict) == 0:
+			return self.stringlength == 0	
