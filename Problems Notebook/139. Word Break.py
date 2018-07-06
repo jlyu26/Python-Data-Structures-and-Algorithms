@@ -52,7 +52,7 @@ class Solution:
 
 
 
-# 思路2: DP: 往前切
+# 思路2: DP: 往前切(?)
 class Solution:
 	def wordBreak(self, s, wordDict):
 		if len(wordDict) == 0:
