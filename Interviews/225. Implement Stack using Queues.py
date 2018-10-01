@@ -20,11 +20,14 @@
 # (for example, no pop or top operations will be called on an empty stack).
 
 # 思路1:
-# q1, q2
+# 两个queue: q1, q2
 # pop: 把前面的都move到另一个empty queue里, pop仅剩的一个
-# top: ..., return最后一个
+# top: return最后一个
 # push: 有不empty的push到里面, 两个queue都empty随便push一个
 # 有一个queue始终是empty的 (which one?)
+
+# 思路2：
+# 一个queue: append自己.pop(0)出来的
 
 class MyStack:
 
@@ -32,14 +35,8 @@ class MyStack:
 		"""
 		Initialize your data structure here.
 		"""
-		self.q1, self.q2 = [], []
+		self.q = []
 		self.size = 0
-
-	def emptyQ(self):	# return empty queue
-		if self.q1:
-			return self.q2
-		else:
-			return self.q1
 
 	def push(self, x):
 		"""
@@ -47,10 +44,7 @@ class MyStack:
 		:type x: int
 		:rtype: void
 		"""
-		if self.q1 is self.emptyQ():
-			self.q2.append(x)
-		else:
-			self.q1.append(x)
+		self.q.append(x)
 		self.size += 1		
 
 	def pop(self):
@@ -58,36 +52,25 @@ class MyStack:
 		Removes the element on top of the stack and returns that element.
 		:rtype: int
 		"""
-		if self.q1 is self.emptyQ():
-			for i in range(0, self.size - 1):
-				self.q1.append(self.q2.pop(0))
-				i += 1
-			self.size = 0
-			return self.q2.pop()
-		else:
-			for i in range(0, self.size - 1):
-				self.q2.append(self.q1.pop(0))
-				i += 1
-			self.size = 0
-			return self.q1.pop()
+		for i in range(0, self.size - 1):
+			self.q.append(self.q.pop(0))
+			i += 1
+		self.size -= 1
+		return self.q.pop(0)
 
 	def top(self):
 		"""
 		Get the top element.
 		:rtype: int
 		"""
-		if self.q1 is self.emptyQ():
-			return self.q2[-1]
-		else:
-			return self.q1[-1]
-
+		return self.q[-1]
 
 	def empty(self):
 		"""
 		Returns whether the stack is empty.
 		:rtype: bool
 		"""
-		return not (self.q1 or self.q2)
+		return not self.q
 
 # Your MyStack object will be instantiated and called as such:
 # obj = MyStack()
