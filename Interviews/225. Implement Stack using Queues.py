@@ -58,12 +58,17 @@ class MyStack:
 		self.size -= 1
 		return self.q.pop(0)
 
-	def top(self):
+	def top(self):	# queue只能访问q[0]
 		"""
 		Get the top element.
 		:rtype: int
 		"""
-		return self.q[-1]
+		for i in range(0, self.size - 1):
+			self.q.append(self.q.pop(0))
+			i += 1
+		topItem = self.q[0]
+		self.q.append(self.q.pop(0))
+		return topItem
 
 	def empty(self):
 		"""

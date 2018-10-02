@@ -10,6 +10,49 @@
 # Given input array nums = [1,1,2],
 # Your function should return length = 2, and nums is now [1,2].
 
+# 思路2: 快慢指针
+# 快指针遇到duplicate往前走，遇到第一个不duplicate的移到慢指针+1的位置
+
+class Solution:
+	def removeDuplicates(self, nums):
+		"""
+		:type nums: List[int]
+		:rtype: int
+		"""
+		if not nums:
+			return 0
+
+		length = len(nums)
+		slow, fast = 0, 1
+		while fast < length:
+			if nums[slow] == nums[fast]:
+				fast += 1
+			else:
+				slow += 1
+				nums[slow] = nums[fast]
+				fast += 1
+
+		return slow + 1 # why +1 ???
+
+class Solution:
+	def removeDuplicates(self, nums):
+		"""
+		:type nums: List[int]
+		:rtype: int
+		"""
+		if len(nums) == 0 or len(nums) == 1:
+			return len(nums)
+
+		slow, fast = 1, 1
+		while fast < len(nums):
+			if nums[fast] != nums[fast - 1]:
+				nums[slow] = nums[fast]
+				slow += 1
+			fast += 1
+
+		return slow
+
+
 class Solution:
 	def removeDuplicates(self, nums):
 		"""
@@ -23,7 +66,7 @@ class Solution:
 		idx = 1
 		while idx != len(nums):
 			if nums[idx] == temp:
-				nums.pop(idx)
+				nums.pop(idx)	# pop()中间的时间复杂度高, 会产生大量位移
 			else:
 				temp = nums[idx]
 				idx += 1

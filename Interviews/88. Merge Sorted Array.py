@@ -16,6 +16,7 @@
 
 # Output: [1,2,2,3,5,6]
 
+# 思路: 从后往前填充, 避免大量位移操作
 class Solution:
 	def merge(self, nums1, m, nums2, n):
 		"""
