@@ -27,7 +27,7 @@ class Solution:
 		"""
 		self.nums = nums
 
-	def pick(self, target):
+	def pick(self, target):	# ???
 		"""
 		:type target: int
 		:rtype: int

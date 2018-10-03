@@ -50,6 +50,8 @@ class Solution:
 	def shuffle(self):
 		return random.sample(self.nums, len(self.nums))
 
+	# 能用Algorithm R写吗?
+
 
 
 # Your Solution object will be instantiated and called as such:
